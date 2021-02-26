@@ -1,0 +1,22 @@
+[
+  {
+    "order": 1,
+    "name": "Demo de leitura e escrita de arquivos com JSON pt1",
+    "desc": "Ler arquivo JSON"
+  },
+  {
+    "order": 2,
+    "name": "Demo de leitura e escrita de arquivos com JSON  pt2",
+    "desc": "transformar em dicionário"
+  },
+  {
+    "order": 3,
+    "name": "Demo de leitura e escrita de arquivos com JSON  pt3",
+    "desc": "Processar o dicionário"
+  },
+  {
+    "order": 4,
+    "name": "Demo de leitura e escrita de arquivos com JSON  pt4",
+    "desc": "Escrever em arquivo JSON"
+  }
+]
