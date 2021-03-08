@@ -2,6 +2,12 @@ from functools import reduce
 from faker import Faker
 from random import randint
 
+"""
+1. processamento
+2. iteração
+3. filtragens
+"""
+
 
 lista = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
