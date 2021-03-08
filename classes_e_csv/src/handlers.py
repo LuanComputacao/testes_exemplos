@@ -1,7 +1,7 @@
-class Matematica:
-    @staticmethod
-    def soma(a, b):
-        return a + b
+import csv
+
+from .models import Produto
+
 
 class VendasHandler:
 
@@ -41,3 +41,21 @@ class VendasHandler:
                 break
 
         return lista_de_produtos, valor_da_venda
+
+
+class ProdutosHandler:
+    @staticmethod
+    def retrieve_products():
+        with open('produtos.csv') as f:
+            reader = csv.DictReader(f)
+            produtos = [Produto(
+                int(p['id']),
+                p['nome'],
+                float(p['preco']),
+                int(p['codigo']),
+                int(p['peso']),
+                p['tipo']
+            ) for p in reader]
+        return produtos
+
+

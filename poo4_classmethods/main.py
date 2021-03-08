@@ -1,6 +1,6 @@
 from functools import reduce
 from models import Produto, Frio, Bebidas, Pacote, Quente, Carrinho, Cliente
-from handlers import VendasHandler
+from handlers import VendasHandler, Matematica
 
 
 def imprime_produtos(lista_de_produtos):
@@ -13,6 +13,11 @@ def imprime_produtos(lista_de_produtos):
 
 
 def main():
+    
+    r = Matematica.soma(2,3)
+    print(r)
+    
+    
     produto1 = Produto(1, 'Pão francês', 0.35, 13234, 80)
     produto2 = Produto(2, 'Pão de batata', -0.80, 43215)
     produto3 = Produto(3, 'Rosquinha de canela', 0.80, 654324)
@@ -42,5 +47,24 @@ def main():
 
 # lista com os atributos "nome" das instancias de classe produto
 
+
+def dobro(limite):
+    limite+=1
+    for n in range(limite):
+        yield n*2
+    
+
+
 if __name__ == '__main__':
-    main()
+    #main()
+    
+    reduzido = reduce(lambda a, i : a+i, range(5))
+
+    if reduzido < 10:
+        print('menor do que 10')
+    elif reduzido <40:
+        print('menor do que 40; maior que 10;')
+    else:
+        print('igual ou maior que 40')
+    
+

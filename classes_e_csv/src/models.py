@@ -1,3 +1,6 @@
+import csv
+
+
 class Etiqueta:
     def __init__(self, codigo: int):
         self.codigo = codigo
@@ -13,7 +16,6 @@ class Etiqueta:
 class Produto:
 
     def __init__(self, id: int, nome: str, preco: float, codigo: int, peso: int = 1, tipo: str = 'prateleira'):
-        
         self.id = id
         self.nome = nome
         self.peso = peso
@@ -87,14 +89,33 @@ class Cliente:
 
 class Carrinho:
     def __init__(self, codigo: int, cliente: Cliente):
-        self.cliente = Cliente
+        self.cliente = cliente
         self.codigo = codigo
         self.produtos = []
 
     def incluir_produto(self, produto: Produto):
         self.produtos.append(produto)
 
+    def incluir_produtos(self, produtos: list):
+        self.produtos += produtos
+
     def __str__(self):
         lista_de_produtos = [f'\n{p}' for p in self.produtos]
         lista_de_produtos_para_impressao = ''.join(lista_de_produtos)
         return f'{self.codigo}:: {self.cliente} {lista_de_produtos_para_impressao}'
+
+    def save(self):
+        with open('carrinho_produtos.csv', 'a') as f:
+            writer = csv.DictWriter(f, fieldnames=['id_carrinho', 'products_ids'])
+            for p in self.produtos:
+                writer.writerow({
+                    'id_carrinho': self.codigo,
+                    'products_ids': p.id
+                })
+
+        with open('carrinho.csv', 'a') as f:
+            writer = csv.DictWriter(f, fieldnames=['codigo', 'cliente'])
+            writer.writerow({
+                'codigo': self.codigo,
+                'cliente': self.cliente.nome
+            })
