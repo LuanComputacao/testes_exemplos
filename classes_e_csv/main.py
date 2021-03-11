@@ -1,6 +1,6 @@
 from src.handlers import ProdutosHandler
 from src.models import Carrinho, Cliente
-import inspect
+import pandas as pd
 
 
 def imprime_produtos(lista_de_produtos):
@@ -14,25 +14,12 @@ def imprime_produtos(lista_de_produtos):
 
 
 def main():
-    produtos = ProdutosHandler.retrieve_products()
-
-    cliente = Cliente('Eduardo')
-    carrinho = Carrinho(123456, cliente)
-
-    attributes = get_init_params()
-    print(attributes)
-
-    carrinho.incluir_produtos(produtos)
-
-    carrinho.save()
-
-    print(carrinho)
-
-
-def get_init_params(class):
-    attributes = list(inspect.signature(Cliente.__init__).parameters.keys())
-    attributes.remove('self')
-    return attributes
+    produtos_df = pd.read_csv('produtos.csv')
+    produtos_df.set_index('id', inplace=True)
+    print(produtos_df)
+    print(produtos_df.loc[1])
+    produtos_pesados_df = produtos_df[produtos_df['peso'] > 50]
+    print(produtos_pesados_df)
 
 
 # lista com os atributos "nome" das instancias de classe produto
