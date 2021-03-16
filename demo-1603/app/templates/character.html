@@ -1,0 +1,6 @@
+{% extends 'base.html' %} {% from 'characters/card.html' import char_card %} {%
+block body %}
+<div class="row justify-content-center">
+  {% for char in characters %} {{ char_card(char) }} {% endfor %}
+</div>
+{% endblock body %}
