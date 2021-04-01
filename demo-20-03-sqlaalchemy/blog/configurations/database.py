@@ -10,3 +10,4 @@ def init_app(app: Flask):
 
     from blog.models.user_model import UserModel
     from blog.models.post_model import PostModel
+    from blog.models.profile_model import ProfileModel
