@@ -1,6 +1,8 @@
 from flask import Blueprint, request, current_app
 from http import HTTPStatus
+
 from app.models.band_model import BandModel
+from app.serializers.band_serializer import BandSchema
 
 bp_band = Blueprint("bp_band", __name__, url_prefix="/api")
 
@@ -14,4 +16,6 @@ def band():
     session.add(band)
     session.commit()
 
-    return {"id": band.id, "band_name": band.name}, HTTPStatus.CREATED
+    serialized = BandSchema().dump(band)
+
+    return serialized, HTTPStatus.CREATED

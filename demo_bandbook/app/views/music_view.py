@@ -1,8 +1,10 @@
 from flask import Blueprint, request, current_app
 from http import HTTPStatus
-from app.models.music_model import MusicModel
-from app.models.band_model import BandModel
 
+from ipdb.__main__ import set_trace
+
+from app.models.music_model import MusicModel
+from app.serializers.music_band_serializer import MusicBandSchema
 
 bp_music = Blueprint('bp_music', __name__, url_prefix='/api')
 
@@ -12,13 +14,13 @@ def music():
 
     data = request.get_json()
     music = MusicModel(name=data['name'], band_id=data['band_id'])
-    band = BandModel.query.get(data['band_id'])
 
     session.add(music)
     session.commit()
 
-    return {
-        'id': music.id,
-        'music_name': music.name,
-        'band_name': band.name
-    }, HTTPStatus.CREATED
+    serializer = MusicBandSchema()
+    serialized = serializer.dump(music)
+
+    set_trace()
+
+    return serialized, HTTPStatus.CREATED
