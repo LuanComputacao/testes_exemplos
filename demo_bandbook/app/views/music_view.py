@@ -1,8 +1,6 @@
 from flask import Blueprint, request, current_app
 from http import HTTPStatus
 
-from ipdb.__main__ import set_trace
-
 from app.models.music_model import MusicModel
 from app.serializers.music_band_serializer import MusicBandSchema
 
@@ -21,6 +19,5 @@ def music():
     serializer = MusicBandSchema()
     serialized = serializer.dump(music)
 
-    set_trace()
 
     return serialized, HTTPStatus.CREATED
